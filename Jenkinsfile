@@ -1,9 +1,6 @@
 pipeline {
 
     agent any 
-      options {
-        skipDefaultCheckout()
-    }  
     stages {
         stage("Get Branches from Git"){
             steps{
