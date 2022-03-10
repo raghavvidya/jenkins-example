@@ -25,10 +25,14 @@ pipeline {
         stage('Checkout Code'){
             steps{
                 cleanWs() // ensure workspace is empty
-                git tag: "${branchToDeploy}", changelog: false, url: "${GIT_URL}"
+             //   git branch: "${branchToDeploy}", changelog: false, url: "${GIT_URL}"
+                checkout([$class: 'GitSCM', branches: [[name: 'refs/tags/${branchToDeploy}'']],
+    userRemoteConfigs: [[url: '${GIT_URL}']]])
 
             }
         }
+        
+        
         stage ('Compile Stage') {
 
             steps {
