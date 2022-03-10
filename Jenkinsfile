@@ -6,7 +6,7 @@ pipeline {
         stage("Get Branches from Git"){
             steps{
                      sh """
-                        git branch -a | grep remotes > ${WORKSPACE}/branchesList.txt
+                        git tag > ${WORKSPACE}/TagList.txt
                      """  
                }
             }
@@ -14,10 +14,10 @@ pipeline {
         stage('User Input'){
            steps{
                script{
-                   listBranchesAvailable = readFile 'branchesList.txt'
+                   listBranchesAvailable = readFile 'TagList.txt'
                     env.branchToDeploy = timeout (time:1, unit:"HOURS") {
-                        input message: 'Branch to deploy', ok: 'Confirm!',
-                                parameters: [choice(name: 'Branches Available:', choices: "${listBranchesAvailable }", description: 'Which branch do you want to build?')]
+                        input message: 'Tag to deploy', ok: 'Confirm!',
+                                parameters: [choice(name: 'Tags Available:', choices: "${listBranchesAvailable }", description: 'Which tags do you want to build?')]
                         }
                }     
            }       
