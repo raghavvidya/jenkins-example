@@ -31,7 +31,7 @@ pipeline {
               //  checkout([$class: 'GitSCM', branches: [[name: 'refs/tags/${branchToDeploy}']], userRemoteConfigs: [[url: ${GIT_URL}]]])
                   checkout([
                         $class: 'GitSCM',
-                        branches: [[name: 'refs/tags/${branchToDeploy}']],
+                        branches: [[name: refs/tags/${branchToDeploy} ]],
                         extensions: [[$class: 'CloneOption', shallow: false, depth: 0, reference: '']],
                         userRemoteConfigs: scm.userRemoteConfigs,
                 ])
