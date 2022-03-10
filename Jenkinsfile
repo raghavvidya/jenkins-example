@@ -26,9 +26,7 @@ pipeline {
             steps{
                 cleanWs() // ensure workspace is empty
              //   git branch: "${branchToDeploy}", changelog: false, url: "${GIT_URL}"
-                checkout([$class: 'GitSCM', branches: [[name: 'refs/tags/${branchToDeploy}'']],
-    userRemoteConfigs: [[url: '${GIT_URL}']]])
-
+                checkout([$class: 'GitSCM', branches: [[name: 'refs/tags/${branchToDeploy}'']], userRemoteConfigs: [[url: '${GIT_URL}']]])
             }
         }
         
