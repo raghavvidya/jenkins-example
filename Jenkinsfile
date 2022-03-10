@@ -25,7 +25,7 @@ pipeline {
         stage('Checkout Code'){
             steps{
                 cleanWs() // ensure workspace is empty
-                git branch: "${branchToDeploy}", changelog: false, url: "${GIT_URL}"
+                git tag: "${branchToDeploy}", changelog: false, url: "${GIT_URL}"
 
             }
         }
